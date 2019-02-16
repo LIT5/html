@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style  type="text/css">
+ html,body{margin:0;padding:0;text-align:center;background:#DADADA;}
+ .container{margin:100px auto;width:612px;padding-top:290px;height:100px;background:#DADADA url(404.png) no-repeat 0 0;}
+ .msg{width:600px;height:100px;margin:0 auto;}
+ p{color:#5D5D5D;font-family: Microsoft YaHei;font-size:16px;}
+ #jumpTo,a{color:#E31011;}
+ a{font-size:14px;}
+</style>
+<script type="text/javascript">
+    function init(secs) {
+        var body = document.getElementsByTagName('body')[0];
+        console.log(body);
+        var container = document.createElement("div");
+        container.className = "container";
+        var msg = document.createElement("div");
+        msg.className = "msg";
+        msg.innerHTML = "<p>将在<span id=\"jumpTo\"></span>秒内自动跳转到首页&nbsp;点击<a>这里</a>返回首页</p>"
+
+        container.appendChild(msg);
+        body.appendChild(container);
+
+        var jumpTo = document.getElementById('jumpTo');
+        jumpTo.innerHTML = secs;
+        var a = document.getElementsByTagName('a')[0];
+        a.setAttribute('href', '/');
+
+        countDown(secs);
+    }
+
+    function countDown(secs) {
+        var jumpTo = document.getElementById('jumpTo');
+        jumpTo.innerHTML = secs;
+        if (--secs > 0) {
+            setTimeout("countDown(" + secs + ")", 1000);
+        } else {
+            location.href = '/';
+        }
+    }
+</script>
+<title>页面无法找到</title>
+</head>
+<body>	
+</body>
+<script type="text/javascript">init(6);</script>
+</html>
